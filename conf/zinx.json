@@ -1,0 +1,8 @@
+{
+  "Name": "Zinx Server App",
+  "Host": "0.0.0.0",
+  "Port": 8999,
+  "WorkerPoolSize": 10,
+  "MaxWorkerTaskLen": 4096,
+  "MaxConn": 1000
+}

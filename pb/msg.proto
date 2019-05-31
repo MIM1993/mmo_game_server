@@ -1,0 +1,46 @@
+
+syntax = "proto3";       //当前protobuf版本的信息，不指定版本会报错
+package pb;              //后期我们生成的go文件所在的包
+
+
+//返回给玩家上线的ID信息
+message SyncPid{
+		int32 Pid=1;
+}
+
+//返回给上线玩家初始的坐标
+message BroadCast{
+	int32 Pid=1;
+	int32 Tp=2; //Tp: 1 世界聊天, 2 坐标, 3 动作, 4 移动之后坐标信息更新
+	oneof Data {
+		string Content=3;
+		Position P=4;
+		int32 ActionData=5;
+	}
+}
+
+//位置信息
+message Position{
+	float X=1;
+	float Y=2;
+	float Z=3;
+	float V=4;
+}
+
+
+
+//聊天数据(client 发送给 server)
+message Talk{
+	string Content=1;
+}
+
+//告知当前玩家 周边都有哪些玩家的位置信息
+message SyncPlayers{
+	repeated Player ps=1;
+}
+
+//其中一个玩家的信息
+message Player{
+	int32 Pid=1;
+	Position P=2;
+}
